@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class Scholarship {
+public class GUIHandler {
 
 	private JFrame frame;
 
@@ -15,7 +15,7 @@ public class Scholarship {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Scholarship window = new Scholarship();
+					GUIHandler window = new GUIHandler();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class Scholarship {
 	/**
 	 * Create the application.
 	 */
-	public Scholarship() {
+	public GUIHandler() {
 		initialize();
 	}
 
