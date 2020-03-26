@@ -1,0 +1,65 @@
+package scholarshipGUI;
+
+import scholarshipSystem.Admin;
+import scholarshipSystem.SystemHandler;
+import scholarshipSystem.User;
+
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class GUIHandler {
+
+	private JFrame frame;
+	private SystemHandler systemHandler;
+
+	/**
+	 * Launch the application.
+	 */
+	public void startGUI() {
+		frame.setVisible(true);
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public GUIHandler(SystemHandler systemHandler) {
+		this.systemHandler = systemHandler;
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		frame = new JFrame();
+		Login panel = new Login(frame, systemHandler, this);
+		frame.setBounds(100, 100, 454, 365);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setContentPane(panel);
+	}
+	
+	protected void displayHomePage(User user) {
+		if (user instanceof Admin) {
+			AdminGUI adminGUI = new AdminGUI(frame);
+			adminGUI.startAdminGUI();
+		}
+	}
+
+}
