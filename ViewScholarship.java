@@ -39,6 +39,14 @@ public class ViewScholarship extends JPanel {
 		add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Add");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				addScholarshipGUI panel = new addScholarshipGUI();
+				panel.setVisible(true);
+			}
+		});
+		
 		btnNewButton.setBounds(29, 200, 89, 23);
 		add(btnNewButton);
 
