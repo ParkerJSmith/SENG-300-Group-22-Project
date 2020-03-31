@@ -1,6 +1,7 @@
 package scholarshipGUI;
 
 import scholarshipSystem.Admin;
+import scholarshipSystem.Professor;
 import scholarshipSystem.Student;
 import scholarshipSystem.SystemHandler;
 import scholarshipSystem.User;
@@ -58,9 +59,11 @@ public class GUIHandler {
 	
 	protected void displayHomePage(User user) {
 		if (user instanceof Admin) {
-			new AdminGUI(frame, systemHandler);
+			frame.setContentPane(new AdminGUI(frame, systemHandler));
 		} else if (user instanceof Student) {
-			new StudentGUI(frame, systemHandler);
+			frame.setContentPane(new StudentGUI(frame, systemHandler));
+		} else if (user instanceof Professor) {
+			frame.setContentPane(new ProfessorGUI(frame, systemHandler));
 		}
 	}
 

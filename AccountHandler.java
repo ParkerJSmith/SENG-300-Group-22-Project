@@ -11,6 +11,7 @@ public class AccountHandler {
 		
 		accounts.add(new Admin("Admin", "password"));
 		accounts.add(new Student("Student", "password"));
+		accounts.add(new Professor("Professor", "password"));
 	}
 	
 	public User verifyAccount(String username, String password) {

@@ -18,7 +18,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AdminGUI {
+public class AdminGUI extends JPanel{
 
 	public AdminGUI(JFrame frame, SystemHandler systemHandler) {
 
@@ -26,20 +26,19 @@ public class AdminGUI {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.control);
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		setBackground(SystemColor.control);
+		frame.getContentPane().add(this, BorderLayout.CENTER);
+		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Admin");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel.setBounds(33, 11, 91, 22);
-		panel.add(lblNewLabel);
+		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Scholarship");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(178, 61, 125, 22);
-		panel.add(lblNewLabel_1);
+		add(lblNewLabel_1);
 
 		JButton btnNewButton = new JButton("View");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -50,8 +49,7 @@ public class AdminGUI {
 			}
 		});
 		btnNewButton.setBounds(172, 104, 89, 23);
-		panel.add(btnNewButton);
-		frame.setContentPane(panel);
+		add(btnNewButton);
 	}
 
 }
