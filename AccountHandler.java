@@ -10,6 +10,7 @@ public class AccountHandler {
 		//For demo purposes users are hardcoded in
 		
 		accounts.add(new Admin("Admin", "password"));
+		accounts.add(new Student("Student", "password"));
 	}
 	
 	public User verifyAccount(String username, String password) {

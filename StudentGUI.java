@@ -1,28 +1,27 @@
 package scholarshipGUI;
 
-import java.awt.EventQueue;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import scholarshipSystem.SystemHandler;
 
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+public class StudentGUI extends JPanel {
 
-public class AdminGUI {
-
-	public AdminGUI(JFrame frame, SystemHandler systemHandler) {
-
-		frame.setTitle("Admin");
+	/**
+	 * Create the panel.
+	 */
+	public StudentGUI(JFrame frame, SystemHandler systemHandler) {
+		frame.setTitle("Student");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -31,7 +30,7 @@ public class AdminGUI {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Admin");
+		JLabel lblNewLabel = new JLabel("Student");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel.setBounds(33, 11, 91, 22);
 		panel.add(lblNewLabel);
@@ -42,11 +41,18 @@ public class AdminGUI {
 		panel.add(lblNewLabel_1);
 
 		JButton btnNewButton = new JButton("View");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Makes ViewScholarship window when clicked
+
+				ViewScholarship vs = new ViewScholarship(frame, systemHandler);
+				frame.setContentPane(vs);
+			}
+		});
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ViewScholarship vs = new ViewScholarship(frame, systemHandler);
-				frame.setContentPane(vs);
+
 			}
 		});
 		btnNewButton.setBounds(172, 104, 89, 23);

@@ -7,24 +7,28 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import java.awt.Color;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
-public class ViewScholarship extends JPanel {
+import scholarshipSystem.SystemHandler;
 
-	// private JFrame frame;
-	private JTextField textField;
+public class ViewScholarship extends JPanel {
 
 	/**
 	 * Create the application.
 	 */
-	public ViewScholarship(JFrame frame) {
-
+	public ViewScholarship(JFrame frame, SystemHandler systemHandler) {
 		frame.setTitle("Scholarship");
 		frame.setBounds(100, 100, 479, 340);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,6 +43,7 @@ public class ViewScholarship extends JPanel {
 		add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Add");
+
 		btnNewButton.setBounds(29, 200, 89, 23);
 		add(btnNewButton);
 
@@ -46,7 +51,7 @@ public class ViewScholarship extends JPanel {
 		btnRemove.setBounds(29, 227, 89, 23);
 		add(btnRemove);
 
-		textField = new JTextField();
+		JTextField textField = new JTextField();
 		textField.setBounds(29, 90, 86, 20);
 		add(textField);
 		textField.setColumns(10);
@@ -57,10 +62,17 @@ public class ViewScholarship extends JPanel {
 		lblNewLabel_1.setBounds(29, 76, 46, 14);
 		add(lblNewLabel_1);
 
-		JList list = new JList();
+		JList list = new JList(systemHandler.getScholarshipNames());
 		list.setBounds(147, 46, 306, 244);
 		add(list);
-		//frame.setContentPane(panel);
+
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				addScholarshipGUI panel = new addScholarshipGUI(frame, systemHandler);
+				frame.setContentPane(panel);
+			}
+		});
 	}
 
 }
