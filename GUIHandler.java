@@ -1,4 +1,9 @@
-import java.awt.EventQueue;
+package scholarshipGUI;
+
+import scholarshipSystem.Admin;
+import scholarshipSystem.Student;
+import scholarshipSystem.SystemHandler;
+import scholarshipSystem.User;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -7,27 +12,20 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class GUIHandler {
 
 	private JFrame frame;
+	private SystemHandler systemHandler;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUIHandler window = new GUIHandler();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public void startGUI() {
+		frame.setVisible(true);
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public GUIHandler() {
+	public GUIHandler(SystemHandler systemHandler) {
+		this.systemHandler = systemHandler;
 		initialize();
 	}
 
@@ -50,12 +48,20 @@ public class GUIHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		frame = new JFrame();
-		Login panel = new Login(frame);
+		Login panel = new Login(frame, systemHandler, this);
 		frame.setBounds(100, 100, 454, 365);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(panel);
+	}
+	
+	protected void displayHomePage(User user) {
+		if (user instanceof Admin) {
+			new AdminGUI(frame, systemHandler);
+		} else if (user instanceof Student) {
+			new StudentGUI(frame, systemHandler);
+		}
 	}
 
 }

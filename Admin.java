@@ -1,16 +1,17 @@
+package scholarshipSystem;
 
 public class Admin extends User {
-	private Scholarship x;
+	private Scholarship scholarship;
 	
-	public Admin(String password, String username) {
-		super(password, username);
+	public Admin(String username, String password) {
+		super(username, password);
 	}
 	
 	public Scholarship getScholarship() {
-		return this.Scholarship;
+		return this.scholarship;
 	}
 	
-	public void setScholarship() {
-		return this.Scholarship;
+	public void setScholarship(Scholarship scholarship) {
+		this.scholarship = scholarship;
 	}
 }

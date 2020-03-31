@@ -1,6 +1,11 @@
+package scholarshipGUI;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import scholarshipSystem.AccountHandler;
+import scholarshipSystem.SystemHandler;
+
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -15,11 +20,18 @@ import java.awt.event.ActionEvent;
 public class Login extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
+	private SystemHandler systemHandler;
+	private AccountHandler accountHandler;
+	private GUIHandler guiHandler;
 
 	/**
 	 * Create the panel.
 	 */
-	public Login(JFrame frame) {
+	public Login(JFrame frame, SystemHandler systemHandler, GUIHandler guiHandler) {
+		this.guiHandler = guiHandler;
+		this.systemHandler = systemHandler;
+		this.accountHandler = systemHandler.getAccountHandler();
+		
 		setBackground(new Color(239, 239, 239));
 		
 		JButton btnLogin = new JButton("Login");
@@ -30,32 +42,6 @@ public class Login extends JPanel {
 			}
 		});
 		btnLogin.setBounds(74, 221, 296, 28);
-		btnLogin.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//Logs the user in 
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-				//
-			}
-		});
 		
 		textField = new JTextField();
 		textField.setBounds(74, 80, 296, 28);
@@ -99,6 +85,20 @@ public class Login extends JPanel {
 				//
 			}
 		});
+		
+		btnLogin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String username = textField.getText().trim();
+				String password = textField_1.getText();
+				if (accountHandler.verifyAccount(username, password) != null) {
+					guiHandler.displayHomePage(accountHandler.verifyAccount(username, password));
+				} else {
+					System.out.println("The username or password were incorrect");
+				}
+			}
+		});
+		
 		lblAlreadyHaveAn.setBounds(90, 260, 192, 18);
 		add(lblAlreadyHaveAn);
 		
@@ -106,7 +106,7 @@ public class Login extends JPanel {
 		lblLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Register panel = new Register(frame);
+				Register panel = new Register(frame, systemHandler, guiHandler);
 				frame.setContentPane(panel);
 				frame.setVisible(true);
 			}

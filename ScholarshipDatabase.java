@@ -1,3 +1,4 @@
+package scholarshipSystem;
 import java.util.ArrayList;
 public class ScholarshipDatabase {
     private int size;
@@ -23,6 +24,12 @@ public class ScholarshipDatabase {
         return db.toArray();
     }
 
-
+    public String [] getScholarshipNames() {
+    	String names[] = new String[db.size()];
+    	for (int i = 0; i < db.size(); i++) {
+    		names[i] = db.get(i).getName();
+    	}
+    	return names;
+    }
 
 }
