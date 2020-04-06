@@ -51,7 +51,7 @@ public class GUIHandler {
 		}
 
 		frame = new JFrame();
-		Login panel = new Login(frame, systemHandler, this);
+		LoginGUI panel = new LoginGUI(frame, systemHandler, this);
 		frame.setBounds(100, 100, 454, 365);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(panel);
@@ -59,11 +59,11 @@ public class GUIHandler {
 	
 	protected void displayHomePage(User user) {
 		if (user instanceof Admin) {
-			frame.setContentPane(new AdminGUI(frame, systemHandler));
+			frame.setContentPane(new AdminGUI(frame, systemHandler, user));
 		} else if (user instanceof Student) {
-			frame.setContentPane(new StudentGUI(frame, systemHandler));
+			frame.setContentPane(new StudentGUI(frame, systemHandler, user));
 		} else if (user instanceof Professor) {
-			frame.setContentPane(new ProfessorGUI(frame, systemHandler));
+			frame.setContentPane(new ProfessorGUI(frame, systemHandler, user));
 		}
 	}
 

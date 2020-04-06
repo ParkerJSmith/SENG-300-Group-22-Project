@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import scholarshipSystem.SystemHandler;
+import scholarshipSystem.User;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -20,7 +21,7 @@ import java.awt.event.ActionEvent;
 
 public class AdminGUI extends JPanel{
 
-	public AdminGUI(JFrame frame, SystemHandler systemHandler) {
+	public AdminGUI(JFrame frame, SystemHandler systemHandler, User user) {
 
 		frame.setTitle("Admin");
 		frame.setBounds(100, 100, 450, 300);
@@ -44,7 +45,7 @@ public class AdminGUI extends JPanel{
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ViewScholarship vs = new ViewScholarship(frame, systemHandler);
+				ViewScholarshipGUI vs = new ViewScholarshipGUI(frame, systemHandler, user);
 				frame.setContentPane(vs);
 			}
 		});

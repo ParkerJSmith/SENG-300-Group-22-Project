@@ -14,13 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import scholarshipSystem.SystemHandler;
+import scholarshipSystem.User;
 
 public class StudentGUI extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public StudentGUI(JFrame frame, SystemHandler systemHandler) {
+	public StudentGUI(JFrame frame, SystemHandler systemHandler, User user) {
 		frame.setTitle("Student");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,7 +45,7 @@ public class StudentGUI extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// Makes ViewScholarship window when clicked
 
-				ViewScholarship vs = new ViewScholarship(frame, systemHandler);
+				ViewScholarshipGUI vs = new ViewScholarshipGUI(frame, systemHandler, user);
 				frame.setContentPane(vs);
 			}
 		});

@@ -12,16 +12,16 @@ public class ScholarshipDatabase {
         db.add(n);
     }
 
-    public void removeScholarship(Scholarship n){
-        db.remove(n);
-    }
-
-    public void removerScholarship(Scholarship n){
-        db.remove(n);
+    public void removeScholarship(int index){
+    	db.remove(index);
     }
 
     public Object[] getScholarshipList(){
         return db.toArray();
+    }
+    
+    public Scholarship getScholarship(int index) {
+    	return db.get(index);
     }
 
     public String [] getScholarshipNames() {
