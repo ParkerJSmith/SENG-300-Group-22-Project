@@ -29,10 +29,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 import scholarshipSystem.SystemHandler;
+import scholarshipSystem.User;
 
 public class ProfessorGUI extends JPanel {
 
-	public ProfessorGUI(JFrame frame, SystemHandler systemHandler) {
+	public ProfessorGUI(JFrame frame, SystemHandler systemHandler, User user) {
 		frame.setTitle("Professor");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +69,7 @@ public class ProfessorGUI extends JPanel {
 				String S_ID = sID.getText();
 
 				if (S_ID.equals("30027956")) {
-					frame.setContentPane(new NominateStudent(frame, systemHandler));
+					frame.setContentPane(new NominateStudentGUI(frame, systemHandler, user));
 				} else {
 					JOptionPane.showMessageDialog(frame, "No student with that ID exists in our database.");
 				}

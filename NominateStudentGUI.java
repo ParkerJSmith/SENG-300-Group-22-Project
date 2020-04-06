@@ -12,17 +12,18 @@ import java.awt.SystemColor;
 import javax.swing.JTextField;
 
 import scholarshipSystem.SystemHandler;
+import scholarshipSystem.User;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class NominateStudent extends JPanel {
+public class NominateStudentGUI extends JPanel {
 
 	/**
 	 * Create the application.
 	 */
-	public NominateStudent(JFrame frame, SystemHandler systemHandler) {
+	public NominateStudentGUI(JFrame frame, SystemHandler systemHandler, User user) {
 		setVisible(false);
 		frame.setTitle("Nominate Student");
 		frame.setBounds(100, 100, 450, 300);

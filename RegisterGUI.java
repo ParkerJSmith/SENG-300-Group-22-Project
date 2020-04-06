@@ -16,7 +16,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Register extends JPanel {
+public class RegisterGUI extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -26,7 +26,7 @@ public class Register extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Register(JFrame frame, SystemHandler systemHandler, GUIHandler guiHandler) {
+	public RegisterGUI(JFrame frame, SystemHandler systemHandler, GUIHandler guiHandler) {
 		this.guiHandler = guiHandler;
 		this.systemHandler = systemHandler;
 
@@ -127,7 +127,7 @@ public class Register extends JPanel {
 		lblLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Login panel = new Login(frame, systemHandler, guiHandler);
+				LoginGUI panel = new LoginGUI(frame, systemHandler, guiHandler);
 				frame.setContentPane(panel);
 				frame.setVisible(true);
 			}

@@ -3,7 +3,7 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 
 
-public class openFile {
+public class OpenFile {
 	JFileChooser fileChooser = new JFileChooser();
 	public StringBuilder sb = new StringBuilder();
 

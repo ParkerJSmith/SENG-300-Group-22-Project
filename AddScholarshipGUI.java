@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import scholarshipSystem.Scholarship;
 import scholarshipSystem.SystemHandler;
+import scholarshipSystem.User;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JTextArea;
 
-public class addScholarshipGUI extends JPanel {
+public class AddScholarshipGUI extends JPanel {
 
 	private JTextField textField;
 	private JTextField textField_1;
@@ -41,7 +42,7 @@ public class addScholarshipGUI extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public addScholarshipGUI(JFrame frame, SystemHandler systemHandler) {
+	public AddScholarshipGUI(JFrame frame, SystemHandler systemHandler, User user) {
 		frame.setBounds(100, 100, 453, 430);
 		frame.getContentPane().setLayout(null);
 		setLayout(null);
@@ -120,6 +121,7 @@ public class addScholarshipGUI extends JPanel {
 					requirements.add(sc.nextLine());
 					i++;
 				}
+				sc.close();
 
 				String reqArray[] = new String[i];
 
@@ -128,10 +130,10 @@ public class addScholarshipGUI extends JPanel {
 				}
 
 				systemHandler.addScholarship(
-						new Scholarship(textField_1.getText(), textField_1.getText(), textField_2.getText(), reqArray,
+						new Scholarship(textField.getText(), textField_1.getText(), textField_2.getText(), reqArray,
 								Integer.parseInt(textField_4.getText()), Integer.parseInt(textField_5.getText())));
 
-				frame.setContentPane(new ViewScholarship(frame, systemHandler));
+				frame.setContentPane(new ViewScholarshipGUI(frame, systemHandler, user));
 			}
 		});
 
@@ -142,7 +144,7 @@ public class addScholarshipGUI extends JPanel {
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				frame.setContentPane(new ViewScholarship(frame, systemHandler));
+				frame.setContentPane(new ViewScholarshipGUI(frame, systemHandler, user));
 			}
 		});
 	}

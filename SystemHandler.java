@@ -30,8 +30,16 @@ public class SystemHandler {
 		database.addScholarship(scholarship);
 	}
 	
+	public void removeScholarship(int index) {
+		database.removeScholarship(index);
+	}
+	
 	public String [] getScholarshipNames() {
 		return database.getScholarshipNames();
+	}
+	
+	public Scholarship getScholarship(int index) {
+		return database.getScholarship(index);
 	}
 
 }
