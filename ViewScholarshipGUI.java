@@ -71,8 +71,19 @@ public class ViewScholarshipGUI extends JPanel {
 		list = new JList(model);
 		list.setBounds(147, 46, 306, 244);
 		add(list);
+		
+		JButton backButton = new JButton("Back");
+		add(backButton);
 
 		if (user instanceof Admin) {
+			backButton.setBounds(29, 254, 89, 23);
+			backButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					frame.setContentPane(new AdminGUI(frame, systemHandler, user));
+				}
+			});
+			
 			JButton btnRemove = new JButton("Remove");
 			btnRemove.setBounds(29, 227, 89, 23);
 			add(btnRemove);
@@ -107,6 +118,14 @@ public class ViewScholarshipGUI extends JPanel {
 		}
 
 		if (user instanceof Student) {
+			backButton.setBounds(29, 227, 89, 23);
+			backButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					frame.setContentPane(new StudentGUI(frame, systemHandler, user));
+				}
+			});
+			
 			JButton btnNewButton = new JButton("Apply");
 			btnNewButton.setBounds(29, 200, 89, 23);
 			add(btnNewButton);

@@ -55,6 +55,7 @@ public class GUIHandler {
 		frame.setBounds(100, 100, 454, 365);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(panel);
+		frame.setVisible(true);
 	}
 	
 	protected void displayHomePage(User user) {
