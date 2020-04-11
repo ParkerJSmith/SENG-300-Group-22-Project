@@ -1,6 +1,6 @@
 package scholarshipSystem;
 
-public class Scholarship {
+public class Scholarship implements java.io.Serializable {
 	private String department;
 	private String level;
 	private String[] requirements;

@@ -77,16 +77,6 @@ public class LoginGUI extends JPanel {
 		JLabel lblAlreadyHaveAn = new JLabel("Don't have an account?");
 		lblAlreadyHaveAn.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblAlreadyHaveAn.setForeground(Color.BLACK);
-		lblAlreadyHaveAn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//
-				//
-				//
-				//
-				//
-			}
-		});
 
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override

@@ -1,6 +1,6 @@
 package scholarshipSystem;
 import java.util.ArrayList;
-public class ScholarshipDatabase {
+public class ScholarshipDatabase implements java.io.Serializable {
     private int size;
     private ArrayList<Scholarship> db;
 
