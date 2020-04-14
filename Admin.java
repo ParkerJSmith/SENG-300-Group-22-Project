@@ -1,5 +1,7 @@
 package scholarshipSystem;
 
+import java.util.ArrayList;
+
 public class Admin extends User {
 	private Scholarship scholarship;
 	

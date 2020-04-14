@@ -7,16 +7,19 @@ public class SystemHandler {
 	private AccountHandler accountHandler;
 	private GUIHandler guiHandler;
 	private ScholarshipDatabase database;
+	private ApplicationHandler applicationHandler;
 
 	public SystemHandler() {
 		this.accountHandler = new AccountHandler();
 		this.guiHandler = new GUIHandler(this);
 		this.database = new ScholarshipDatabase();
+		this.applicationHandler = new ApplicationHandler();
 	}
 
 	public static void main(String[] args) {
 
 		SystemHandler systemHandler = new SystemHandler();
+		
 		systemHandler.addScholarship(new Scholarship("Test Scholarship"));
 		systemHandler.guiHandler.startGUI();
 
@@ -40,6 +43,22 @@ public class SystemHandler {
 	
 	public Scholarship getScholarship(int index) {
 		return database.getScholarship(index);
+	}
+	
+	public String [] getApplicationNames() {
+		return applicationHandler.getApplicationNames();
+	}
+	
+	public int getAppSize() {
+		return applicationHandler.size();
+	}
+	
+	public void addApplication(Application application) {
+		applicationHandler.addApplication(application);
+	}
+	
+	public Application getApplication(int index) {
+		return applicationHandler.getApplication(index);
 	}
 
 }

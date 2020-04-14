@@ -33,17 +33,17 @@ public class ViewScholarshipGUI extends JPanel {
 	JList list;
 	SystemHandler systemHandler;
 	DefaultListModel model;
-	
+
 	public ViewScholarshipGUI(JFrame frame, SystemHandler systemHandler, User user) {
 		this.systemHandler = systemHandler;
 		model = new DefaultListModel();
-		
-		String scholarships [] = systemHandler.getScholarshipNames();
-		
+
+		String scholarships[] = systemHandler.getScholarshipNames();
+
 		for (int i = 0; i < scholarships.length; i++) {
 			model.addElement(scholarships[i]);
 		}
-		
+
 		frame.setTitle("Scholarship");
 		frame.setBounds(100, 100, 479, 340);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,7 +71,7 @@ public class ViewScholarshipGUI extends JPanel {
 		list = new JList(model);
 		list.setBounds(147, 46, 306, 244);
 		add(list);
-		
+
 		JButton backButton = new JButton("Back");
 		add(backButton);
 
@@ -83,7 +83,7 @@ public class ViewScholarshipGUI extends JPanel {
 					frame.setContentPane(new AdminGUI(frame, systemHandler, user));
 				}
 			});
-			
+
 			JButton btnRemove = new JButton("Remove");
 			btnRemove.setBounds(29, 227, 89, 23);
 			add(btnRemove);
@@ -92,11 +92,9 @@ public class ViewScholarshipGUI extends JPanel {
 				public void mouseClicked(MouseEvent arg0) {
 					int listIndex = list.getSelectedIndex();
 					if (listIndex > -1) {
-						int n = JOptionPane.showConfirmDialog(
-							    frame,
-							    "Are you sure you want to delete this scholarship? This cannot be undone.",
-							    "Warning",
-							    JOptionPane.YES_NO_OPTION);
+						int n = JOptionPane.showConfirmDialog(frame,
+								"Are you sure you want to delete this scholarship? This cannot be undone.", "Warning",
+								JOptionPane.YES_NO_OPTION);
 						if (n == 0) {
 							systemHandler.removeScholarship(listIndex);
 							model.remove(listIndex);
@@ -118,6 +116,7 @@ public class ViewScholarshipGUI extends JPanel {
 		}
 
 		if (user instanceof Student) {
+			Student student = (Student)user;
 			backButton.setBounds(29, 227, 89, 23);
 			backButton.addMouseListener(new MouseAdapter() {
 				@Override
@@ -125,14 +124,17 @@ public class ViewScholarshipGUI extends JPanel {
 					frame.setContentPane(new StudentGUI(frame, systemHandler, user));
 				}
 			});
-			
+
 			JButton btnNewButton = new JButton("Apply");
 			btnNewButton.setBounds(29, 200, 89, 23);
 			add(btnNewButton);
 			btnNewButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					new ApplicationGUI();
+					if (list.getSelectedIndex() >= 0 && !student.checkAppliedMax()) {
+						new ApplicationGUI((Student) user, systemHandler.getScholarship(list.getSelectedIndex()),
+								systemHandler);
+					}
 				}
 			});
 		}

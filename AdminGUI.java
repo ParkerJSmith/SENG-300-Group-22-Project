@@ -74,7 +74,7 @@ public class AdminGUI extends JPanel{
 		});
 		add(lblSignout);
 
-		JButton btnNewButton = new JButton("View");
+		JButton btnNewButton = new JButton("View Scholarships");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -82,8 +82,18 @@ public class AdminGUI extends JPanel{
 				frame.setContentPane(vs);
 			}
 		});
-		btnNewButton.setBounds(172, 104, 89, 23);
+		btnNewButton.setBounds(154, 104, 120, 23);
 		add(btnNewButton);
+		
+		JButton seeApplications = new JButton("View Applications");
+		seeApplications.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				frame.setContentPane(new ViewApplicationsGUI(frame, systemHandler, user));
+			}
+		});
+		seeApplications.setBounds(154, 131, 120, 23);
+		add(seeApplications);
 	}
 
 }

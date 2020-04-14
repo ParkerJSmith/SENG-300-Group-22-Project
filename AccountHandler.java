@@ -1,19 +1,20 @@
 package scholarshipSystem;
+
 import java.util.ArrayList;
 
 public class AccountHandler {
 
 	private ArrayList<User> accounts = new ArrayList<User>();
-	
+
 	public AccountHandler() {
-		//In final version will read from file to load all users
-		//For demo purposes users are hardcoded in
-		
+		// In final version will read from file to load all users
+		// For demo purposes users are hardcoded in
+
 		accounts.add(new Admin("Admin", "password"));
-		accounts.add(new Student("Student", "password"));
+		accounts.add(new Student("Student", "password", Faculty.SCIENCE, this));
 		accounts.add(new Professor("Professor", "password"));
 	}
-	
+
 	public User verifyAccount(String username, String password) {
 		for (int i = 0; i < accounts.size(); i++) {
 			if (accounts.get(i).getUsername().equals(username) && accounts.get(i).checkPassword(password)) {
@@ -22,5 +23,17 @@ public class AccountHandler {
 		}
 		return null;
 	}
-	
+
+	public boolean checkUniqueID(String id) {
+		for (int i = 0; i < accounts.size(); i++) {
+			if (accounts.get(i) instanceof Student) {
+				Student student = (Student) accounts.get(i);
+				if (id.equals(student.getStudentID())) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 }

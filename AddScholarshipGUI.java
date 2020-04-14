@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import scholarshipSystem.Faculty;
 import scholarshipSystem.Scholarship;
 import scholarshipSystem.SystemHandler;
 import scholarshipSystem.User;
@@ -18,6 +19,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,12 +30,6 @@ import java.util.Scanner;
 import javax.swing.JTextArea;
 
 public class AddScholarshipGUI extends JPanel {
-
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_4;
-	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -76,35 +72,43 @@ public class AddScholarshipGUI extends JPanel {
 		lblAward_Amount.setBounds(11, 240, 75, 14);
 		add(lblAward_Amount);
 
-		textField = new JTextField();
+		JTextField textField = new JTextField();
 		textField.setBounds(113, 72, 247, 20);
 		add(textField);
 		textField.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(113, 97, 247, 20);
+		JTextField textField_1 = new JTextField();
+		textField_1.setBounds(113, 121, 247, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
 
-		textField_2 = new JTextField();
-		textField_2.setBounds(113, 121, 247, 20);
-		add(textField_2);
-		textField_2.setColumns(10);
+		String[] facultyNames = { "Arts", "Medicine", "Architecture", "Graduate Studies", "Business", "Kinesiology",
+				"Law", "Nursing", "Engineering", "Science", "Social Work", "Veterinary", "Education" };
+
+		JComboBox facultyBox = new JComboBox(facultyNames);
+		facultyBox.setBounds(113, 97, 247, 20);
+		add(facultyBox);
+		// textField_2.setColumns(10);
 
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		textArea.setBounds(113, 144, 247, 60);
 		add(textArea);
 
-		textField_4 = new JTextField();
+		JTextField textField_4 = new JTextField();
 		textField_4.setBounds(113, 212, 247, 20);
 		add(textField_4);
 		textField_4.setColumns(10);
 
-		textField_5 = new JTextField();
+		JTextField textField_5 = new JTextField();
 		textField_5.setBounds(113, 237, 247, 20);
 		add(textField_5);
 		textField_5.setColumns(10);
+
+		JTextField textField_6 = new JTextField();
+		textField_6.setBounds(113, 237, 247, 20);
+		add(textField_6);
+		textField_6.setColumns(10);
 
 		JButton btnPublish = new JButton("Publish");
 		btnPublish.setBounds(11, 266, 65, 23);
@@ -129,9 +133,9 @@ public class AddScholarshipGUI extends JPanel {
 					reqArray[j] = requirements.get(j);
 				}
 
-				systemHandler.addScholarship(
-						new Scholarship(textField.getText(), textField_1.getText(), textField_2.getText(), reqArray,
-								Integer.parseInt(textField_4.getText()), Integer.parseInt(textField_5.getText())));
+				systemHandler.addScholarship(new Scholarship(textField.getText(), textField_1.getText(),
+						Faculty.getFaculty(facultyBox.getSelectedIndex()), reqArray, Integer.parseInt(textField_4.getText()),
+						Integer.parseInt(textField_5.getText()), 4));
 
 				frame.setContentPane(new ViewScholarshipGUI(frame, systemHandler, user));
 			}
