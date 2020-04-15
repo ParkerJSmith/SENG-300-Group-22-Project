@@ -76,7 +76,7 @@ public class ReviewApplicationGUI extends JFrame {
 		
 		JTextField textField_3 = new JTextField();
 		textField_3.setEditable(false);
-		textField_3.setText(application.getBirthDate());
+		textField_3.setText(application.getDate().toString());
 		textField_3.setBounds(140, 225, 120, 20);
 		panel.add(textField_3);
 		textField_3.setColumns(10);

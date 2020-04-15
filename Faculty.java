@@ -2,7 +2,7 @@ package scholarshipSystem;
 
 public enum Faculty {
 
-	ARTS, MEDICINE, ARCHITECTURE, GRADUATE_STUDIES, BUSINESS, KINESIOLOGY, LAW, NURSING, ENGINEERING, SCIENCE, SOCIAL_WORK, VETERINARY, EDUCATION;
+	ARTS, MEDICINE, ARCHITECTURE, GRADUATE_STUDIES, BUSINESS, KINESIOLOGY, LAW, NURSING, ENGINEERING, SCIENCE, SOCIAL_WORK, VETERINARY, EDUCATION, OPEN_STUDIES, CONTINUING_EDUCATION;
 
 	public static Faculty getFaculty(int index) {
 		switch (index) {
@@ -41,9 +41,15 @@ public enum Faculty {
 
 		case 11:
 			return VETERINARY;
-			
+
 		case 12:
 			return EDUCATION;
+
+		case 13:
+			return OPEN_STUDIES;
+
+		case 14:
+			return CONTINUING_EDUCATION;
 
 		default:
 			return null;

@@ -31,5 +31,9 @@ public class ScholarshipDatabase {
     	}
     	return names;
     }
+    
+    public boolean checkNominatable(int index) {
+    	return db.get(index).getNominatable();
+    }
 
 }

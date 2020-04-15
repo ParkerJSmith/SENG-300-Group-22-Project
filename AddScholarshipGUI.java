@@ -19,6 +19,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionEvent;
@@ -26,6 +27,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 import javax.swing.JTextArea;
 
@@ -56,8 +59,8 @@ public class AddScholarshipGUI extends JPanel {
 		lblScholarshipDepartment.setBounds(11, 100, 61, 14);
 		add(lblScholarshipDepartment);
 
-		JLabel lblLevel = new JLabel("Level:");
-		lblLevel.setBounds(11, 124, 29, 14);
+		JLabel lblLevel = new JLabel("Deadline:");
+		lblLevel.setBounds(11, 124, 60, 14);
 		add(lblLevel);
 
 		JLabel lblRequirements = new JLabel("Requirements: ");
@@ -71,21 +74,42 @@ public class AddScholarshipGUI extends JPanel {
 		JLabel lblAward_Amount = new JLabel("Award Amount:");
 		lblAward_Amount.setBounds(11, 240, 75, 14);
 		add(lblAward_Amount);
+		
+		JLabel lblnominate = new JLabel("Allow nominations: ");
+		lblnominate.setBounds(11, 281, 200, 20);
+		add(lblnominate);
+		
+		JLabel lblminGPA = new JLabel("Minimum GPA: ");
+		lblminGPA.setBounds(11, 261, 200, 20);
+		add(lblminGPA);
+		
+		JCheckBox nominateBool = new JCheckBox();
+		nominateBool.setBounds(110, 282, 23, 23);
+		add(nominateBool);
 
 		JTextField textField = new JTextField();
 		textField.setBounds(113, 72, 247, 20);
 		add(textField);
 		textField.setColumns(10);
 
-		JTextField textField_1 = new JTextField();
-		textField_1.setBounds(113, 121, 247, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
+		JTextField textYear = new JTextField();
+		textYear.setText("YYYY");
+		textYear.setBounds(113, 120, 40, 20);
+		add(textYear);
+		JTextField textMonth = new JTextField();
+		textMonth.setText("MM");
+		textMonth.setBounds(155, 120, 40, 20);
+		add(textMonth);
+		JTextField textDay = new JTextField();
+		textDay.setText("DD");
+		textDay.setBounds(197, 120, 40, 20);
+		add(textDay);
+		
 
 		String[] facultyNames = { "Arts", "Medicine", "Architecture", "Graduate Studies", "Business", "Kinesiology",
-				"Law", "Nursing", "Engineering", "Science", "Social Work", "Veterinary", "Education" };
+				"Law", "Nursing", "Engineering", "Science", "Social Work", "Veterinary", "Education", "Open Studies", "Continuing Education" };
 
-		JComboBox facultyBox = new JComboBox(facultyNames);
+		JComboBox<String> facultyBox = new JComboBox<String>(facultyNames);
 		facultyBox.setBounds(113, 97, 247, 20);
 		add(facultyBox);
 		// textField_2.setColumns(10);
@@ -104,14 +128,13 @@ public class AddScholarshipGUI extends JPanel {
 		textField_5.setBounds(113, 237, 247, 20);
 		add(textField_5);
 		textField_5.setColumns(10);
-
-		JTextField textField_6 = new JTextField();
-		textField_6.setBounds(113, 237, 247, 20);
-		add(textField_6);
-		textField_6.setColumns(10);
+		
+		JTextField minGPAText = new JTextField();
+		minGPAText.setBounds(113, 262, 40, 20);
+		add(minGPAText);
 
 		JButton btnPublish = new JButton("Publish");
-		btnPublish.setBounds(11, 266, 65, 23);
+		btnPublish.setBounds(11, 320, 65, 23);
 		add(btnPublish);
 		btnPublish.addMouseListener(new MouseAdapter() {
 			@Override
@@ -132,17 +155,19 @@ public class AddScholarshipGUI extends JPanel {
 				for (int j = 0; j < requirements.size(); j++) {
 					reqArray[j] = requirements.get(j);
 				}
+				
+				Calendar date = new GregorianCalendar(Integer.parseInt(textYear.getText()), Integer.parseInt(textMonth.getText()), Integer.parseInt(textDay.getText()));
 
-				systemHandler.addScholarship(new Scholarship(textField.getText(), textField_1.getText(),
+				systemHandler.addScholarship(new Scholarship(textField.getText(), date,
 						Faculty.getFaculty(facultyBox.getSelectedIndex()), reqArray, Integer.parseInt(textField_4.getText()),
-						Integer.parseInt(textField_5.getText()), 4));
+						Integer.parseInt(textField_5.getText()), 4, nominateBool.isSelected()));
 
 				frame.setContentPane(new ViewScholarshipGUI(frame, systemHandler, user));
 			}
 		});
 
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(86, 266, 65, 23);
+		btnCancel.setBounds(86, 320, 65, 23);
 		add(btnCancel);
 
 		btnCancel.addMouseListener(new MouseAdapter() {

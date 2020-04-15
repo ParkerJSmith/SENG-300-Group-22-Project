@@ -96,10 +96,10 @@ public class ProfessorGUI extends JPanel {
 		nominateBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				String S_ID = sID.getText();
-
-				if (S_ID.equals("30027956")) {
-					frame.setContentPane(new NominateStudentGUI(frame, systemHandler, user));
+				String studentID = sID.getText();
+				
+				if (systemHandler.checkStudentID(studentID)) {
+					frame.setContentPane(new NominateStudentGUI(frame, systemHandler, user, systemHandler.getStudent(studentID)));
 				} else {
 					JOptionPane.showMessageDialog(frame, "No student with that ID exists in our database.");
 				}

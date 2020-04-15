@@ -24,6 +24,9 @@ import javax.swing.JFileChooser;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
@@ -35,7 +38,7 @@ public class ApplicationGUI extends JFrame {
 	 */
 
 	ArrayList<String> files = new ArrayList<>();
-	
+
 	public ApplicationGUI(Student student, Scholarship scholarship, SystemHandler systemHandler) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 564, 610);
@@ -87,7 +90,7 @@ public class ApplicationGUI extends JFrame {
 				try {
 					files.add(openfile.pick());
 					String text = "";
-					for (int i =0; i < files.size(); i++) {
+					for (int i = 0; i < files.size(); i++) {
 						text += files.get(i) + "\n";
 					}
 					textArea.setText(text);
@@ -104,9 +107,9 @@ public class ApplicationGUI extends JFrame {
 		lblNewLabel_4.setBounds(71, 302, 101, 12);
 		contentPane.add(lblNewLabel_4);
 
-		JLabel lblNewLabel = new JLabel("Birth Date:");
-		lblNewLabel.setBounds(71, 153, 63, 20);
-		contentPane.add(lblNewLabel);
+		JLabel lblDate = new JLabel("Date:");
+		lblDate.setBounds(71, 153, 63, 20);
+		contentPane.add(lblDate);
 
 		JLabel lblNewLabel_1 = new JLabel("Faculty:");
 		lblNewLabel_1.setBounds(71, 184, 46, 14);
@@ -133,10 +136,15 @@ public class ApplicationGUI extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 
-		JTextField textField_3 = new JTextField();
-		textField_3.setBounds(160, 153, 178, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		JTextField dateField = new JTextField();
+		Calendar date = new GregorianCalendar();
+		String dateString = date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/"
+				+ date.get(Calendar.DAY_OF_MONTH);
+		dateField.setText(dateString);
+		dateField.setEditable(false);
+		dateField.setBounds(160, 153, 178, 20);
+		contentPane.add(dateField);
+		dateField.setColumns(10);
 
 		JTextField textField_4 = new JTextField();
 		textField_4.setText(student.getStudentID());
@@ -161,37 +169,40 @@ public class ApplicationGUI extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// Checks to verify that student has high enough GPA and is in the correct
-				// faculty.
-				if (scholarship.getFaculty() == student.getFaculty()
-						&& Integer.parseInt(textField.getText()) >= scholarship.getMinGPA()) {
-					// Student passes automated requirements and application is then fed into the
-					// application system.
+				// Assures no illegal arguments are passed through
+				if (Double.parseDouble(textField.getText()) <= 4.0) {
+					// Checks to verify that student has high enough GPA and is in the correct
+					// faculty.
+					if (scholarship.getFaculty() == student.getFaculty()
+							&& Double.parseDouble(textField.getText()) >= scholarship.getMinGPA()) {
+						// Student passes automated requirements and application is then fed into the
+						// application system.
 
-					String [] array = new String[files.size()];
-					for (int i = 0; i < files.size(); i++) {
-						array[i] = files.get(i);
+						String[] array = new String[files.size()];
+						for (int i = 0; i < files.size(); i++) {
+							array[i] = files.get(i);
+						}
+
+						Application application = new Application(textField_6.getText(), textField_5.getText(),
+								textField_4.getText(), date, student.getFaculty(),
+								Integer.parseInt(textField_1.getText()), Double.parseDouble(textField.getText()),
+								scholarship, student, array);
+						student.addApplication(application);
+
+						systemHandler.addApplication(application);
+					} else {
+						// Since student failed certain requirements, scholarship is added only to list
+						// of applied scholarships, but is not
+						// added to the database. Application is rejected immediately and scholarship
+						// stats are not affected.
+						student.addApplication(
+								new Application(textField_6.getText(), textField_5.getText(), textField_4.getText(),
+										date, student.getFaculty(), Integer.parseInt(textField_1.getText()),
+										Double.parseDouble(textField.getText()), scholarship, student, 0));
+
 					}
-					
-					Application application = new Application(textField_6.getText(), textField_5.getText(),
-							textField_4.getText(), textField_3.getText(), student.getFaculty(),
-							Integer.parseInt(textField_1.getText()), Integer.parseInt(textField.getText()), scholarship,
-							student, array);
-					student.addApplication(application);
-
-					systemHandler.addApplication(application);
-				} else {
-					// Since student failed certain requirements, scholarship is added only to list
-					// of applied scholarships, but is not
-					// added to the database. Application is rejected immediately and scholarship
-					// stats are not affected.
-					student.addApplication(new Application(textField_6.getText(), textField_5.getText(),
-							textField_4.getText(), textField_3.getText(), student.getFaculty(),
-							Integer.parseInt(textField_1.getText()), Integer.parseInt(textField.getText()), scholarship,
-							student, 0));
-
+					setVisible(false);
 				}
-				setVisible(false);
 			}
 		});
 

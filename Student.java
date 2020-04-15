@@ -18,7 +18,7 @@ public class Student extends User {
 				this.studentID += (int) (Math.random() * 10);
 			}
 		} while (!accountHandler.checkUniqueID(this.studentID));
-
+		System.out.println(studentID);
 	}
 
 	public void setScholarship(Scholarship scholarship) {

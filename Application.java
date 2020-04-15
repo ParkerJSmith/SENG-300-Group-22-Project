@@ -1,49 +1,61 @@
 package scholarshipSystem;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Application {
 
 	String lastName, firstName, id;
 	Faculty faculty;
-	int year, gpa;
-	String birthDate;
+	int year;
+	double gpa;
+	Calendar date;
 	Scholarship scholarship;
 	String status;
 	Student student;
-	String [] files;
+	String[] files;
 
 	public static final int PENDING = -1;
 	public static final int APPROVED = 1;
 	public static final int REJECTED = 0;
 
-	public Application(String lastName, String firstName, String id, String birthDate, Faculty faculty, int year, int gpa,
-			Scholarship scholarship, Student student, String [] files) {
+	public Application(String lastName, String firstName, String id, Calendar date, Faculty faculty, int year,
+			double gpa, Scholarship scholarship, Student student, String[] files) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.id = id;
-		this.birthDate = birthDate;
+		this.date = date;
 		this.faculty = faculty;
 		this.year = year;
 		this.gpa = gpa;
 		this.scholarship = scholarship;
-		this.status = "(pending)";
+		setStatus(-1);
 		this.student = student;
 		this.files = files;
 	}
-	
-	public Application(String lastName, String firstName, String id, String birthDate, Faculty faculty, int year, int gpa,
+
+	public Application(String lastName, String firstName, String id, Calendar date, Faculty faculty, int year, double gpa,
 			Scholarship scholarship, Student student, int status) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.id = id;
-		this.birthDate = birthDate;
+		this.date = date;
 		this.faculty = faculty;
 		this.year = year;
 		this.gpa = gpa;
 		this.scholarship = scholarship;
 		this.student = student;
 		setStatus(status);
+	}
+	
+	public Application(Student student, Scholarship scholarship) {
+		this.lastName = "Nomination Candidate";
+		this.id = student.getStudentID();
+		this.faculty = student.getFaculty();
+		this.date = new GregorianCalendar();
+		this.scholarship = scholarship;
+		setStatus(-1);
 	}
 
 	public String getName() {
@@ -84,8 +96,8 @@ public class Application {
 		return this.id;
 	}
 
-	public String getBirthDate() {
-		return this.birthDate;
+	public Calendar getDate() {
+		return this.date;
 	}
 
 	public Faculty getFaculty() {
@@ -95,16 +107,16 @@ public class Application {
 	public int getYear() {
 		return this.year;
 	}
-	
-	public int getGPA() {
+
+	public double getGPA() {
 		return this.gpa;
 	}
-	
+
 	public String getStatus() {
 		return this.status;
 	}
-	
-	public String [] getFilePaths() {
+
+	public String[] getFilePaths() {
 		return this.files;
 	}
 

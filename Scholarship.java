@@ -1,20 +1,24 @@
 package scholarshipSystem;
 
-public class Scholarship {
-	private String level;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public class Scholarship implements java.io.Serializable {
 	private String[] requirements;
 	private int availability;
 	private int amount;
+	private Calendar deadline;
 	private String name;
 	private int applicantTotal;
 	private int applicantsAccepted;
 	private double minGPA;
 	private Faculty faculty;
+	private boolean nominatable;
 
-	public Scholarship(String nname, String nlevel, Faculty nfaculty, String[] nrequirements, int navailability,
-			int namount, double nminGPA) {
+	public Scholarship(String nname, Calendar ndeadline, Faculty nfaculty, String[] nrequirements, int navailability,
+			int namount, double nminGPA, boolean nnominatable) {
 		name = nname;
-		level = nlevel;
+		deadline = ndeadline;
 		requirements = nrequirements;
 		availability = navailability;
 		amount = namount;
@@ -22,14 +26,21 @@ public class Scholarship {
 		applicantsAccepted = 0;
 		minGPA = nminGPA;
 		faculty = nfaculty;
+		nominatable = nnominatable;
 	}
 
 	public Scholarship(String name) {
 		this.name = name;
-		level = "Level";
+		deadline = new GregorianCalendar();
+		deadline.set(2020, 4, 31);
 		requirements = new String[1];
 		availability = 3213;
 		amount = 32131;
+		applicantTotal = 0;
+		applicantsAccepted = 0;
+		minGPA = 3.2;
+		faculty = Faculty.SCIENCE;
+		nominatable = true;
 	}
 
 	public String getName() {
@@ -40,12 +51,12 @@ public class Scholarship {
 		name = newname;
 	}
 
-	public String getLevel() {
-		return level;
+	public Calendar getDeadline() {
+		return deadline;
 	}
 
-	public void setLevel(String newlevel) {
-		level = newlevel;
+	public void setDeadline(Calendar newdeadline) {
+		deadline = newdeadline;
 	}
 
 	public String[] getRequirements() {
@@ -82,6 +93,10 @@ public class Scholarship {
 	
 	public void incrementApplicants() {
 		this.applicantTotal++;
+	}
+	
+	public boolean getNominatable() {
+		return this.nominatable;
 	}
 
 }
