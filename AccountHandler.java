@@ -7,7 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class AccountHandler {
+public class AccountHandler implements java.io.Serializable {
 
 	private ArrayList<User> accounts;
 
@@ -30,6 +30,8 @@ public class AccountHandler {
 			e.printStackTrace();
 		}
 		
+		// In final version will read from file to load all users
+		// For demo purposes users are hardcoded in
 	}
 
 	public User verifyAccount(String username, String password) {
