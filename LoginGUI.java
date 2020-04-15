@@ -1,3 +1,4 @@
+/* Login screen, GUI part*/
 package scholarshipGUI;
 
 import javax.swing.JPanel;
@@ -35,7 +36,7 @@ public class LoginGUI extends JPanel {
 
 		setBackground(new Color(239, 239, 239));
 
-		JButton btnLogin = new JButton("Login");
+		JButton btnLogin = new JButton("Login");							//Create button labelled "Login"//
 		btnLogin.setForeground(new Color(0, 0, 0));
 		btnLogin.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnLogin.addActionListener(new ActionListener() {
@@ -44,26 +45,26 @@ public class LoginGUI extends JPanel {
 		});
 		btnLogin.setBounds(74, 221, 296, 28);
 
-		JTextField textField = new JTextField();
+		JTextField textField = new JTextField();							// Create the text field for "Username" Label//
 		textField.setBounds(74, 80, 296, 28);
 		textField.setColumns(10);
 
-		JPasswordField textField_1 = new JPasswordField();
+		JPasswordField textField_1 = new JPasswordField();					// Create the text field for "Password label//
 		textField_1.setBounds(74, 131, 296, 28);
 		textField_1.setColumns(10);
 		textField_1.setEchoChar('*');
 
-		JLabel lblUsername = new JLabel("Username:");
+		JLabel lblUsername = new JLabel("Username:");						// Create the "Username" Label//
 		lblUsername.setForeground(new Color(103, 105, 107));
 		lblUsername.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblUsername.setBounds(74, 64, 76, 14);
 
-		JLabel lblPassword = new JLabel("Password:");
+		JLabel lblPassword = new JLabel("Password:");						// Create the "Password" Label//
 		lblPassword.setForeground(new Color(103, 105, 107));
 		lblPassword.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblPassword.setBounds(74, 115, 90, 14);
 
-		JLabel lblUniversityOfWinnipeg = new JLabel("University of Winnipeg Scholarships");
+		JLabel lblUniversityOfWinnipeg = new JLabel("University of Winnipeg Scholarships");		//Name of university Label//
 		lblUniversityOfWinnipeg.setBounds(102, 33, 253, 20);
 		lblUniversityOfWinnipeg.setFont(new Font("Arial", Font.PLAIN, 16));
 		setLayout(null);
@@ -74,20 +75,20 @@ public class LoginGUI extends JPanel {
 		add(textField);
 		add(lblUniversityOfWinnipeg);
 
-		JLabel lblAlreadyHaveAn = new JLabel("Don't have an account?");
+		JLabel lblAlreadyHaveAn = new JLabel("Don't have an account?");		// Create label "Don't have an account?//
 		lblAlreadyHaveAn.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblAlreadyHaveAn.setForeground(Color.BLACK);
 
-		btnLogin.addMouseListener(new MouseAdapter() {
+		btnLogin.addMouseListener(new MouseAdapter() {						
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {						// Event handler for the "Login" Button//
 				String username = textField.getText().trim();
 				char[] passwordArray = textField_1.getPassword();
 				String password = "";
 				for (int i = 0; i < passwordArray.length; i++) {
 					password += passwordArray[i];
 				}
-				if (accountHandler.verifyAccount(username, password) != null) {
+				if (accountHandler.verifyAccount(username, password) != null) {				//Checks if username and password are valid//
 					guiHandler.displayHomePage(accountHandler.verifyAccount(username, password));
 				} else {
 					System.out.println("The username or password were incorrect");
@@ -98,10 +99,10 @@ public class LoginGUI extends JPanel {
 		lblAlreadyHaveAn.setBounds(90, 260, 192, 18);
 		add(lblAlreadyHaveAn);
 
-		JLabel lblLogin = new JLabel("Register here");
+		JLabel lblLogin = new JLabel("Register here");						// Create "Register here" label//
 		lblLogin.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {						// Event handler if this label is clicked, head to RegisterGUI screen//					
 				RegisterGUI panel = new RegisterGUI(frame, systemHandler, guiHandler);
 				frame.setContentPane(panel);
 				frame.setVisible(true);
@@ -112,7 +113,7 @@ public class LoginGUI extends JPanel {
 		lblLogin.setBounds(260, 260, 107, 18);
 		add(lblLogin);
 
-		JCheckBox chckbxRememberMe = new JCheckBox("Remember Me");
+		JCheckBox chckbxRememberMe = new JCheckBox("Remember Me");			// Box to remember login details//
 		chckbxRememberMe.setForeground(new Color(103, 105, 107));
 		chckbxRememberMe.setFont(new Font("Arial", Font.PLAIN, 12));
 		chckbxRememberMe.setBounds(74, 166, 133, 23);
