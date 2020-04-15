@@ -18,7 +18,7 @@ public class SystemHandler {
 	public SystemHandler() {
 		this.accountHandler = new AccountHandler();
 		this.guiHandler = new GUIHandler(this);
-		this.applicationHandler = new ApplicationHandler(this);
+		this.applicationHandler = new ApplicationHandler();
 		
 		//Try to deserialize scholarships from file, otherwise use new scholarship database
 
@@ -41,6 +41,7 @@ public class SystemHandler {
 
 		SystemHandler systemHandler = new SystemHandler();
 		
+		systemHandler.addScholarship(new Scholarship("Test Scholarship"));
 		systemHandler.guiHandler.startGUI();
 
 	}
@@ -59,7 +60,7 @@ public class SystemHandler {
 		writeScholarshipDB();
 	}
 	
-	void writeScholarshipDB() {
+	private void writeScholarshipDB() {
 	    try {
 	    	FileOutputStream fOut = new FileOutputStream("Scholarships.ser");
 	    	ObjectOutputStream out = new ObjectOutputStream(fOut);
