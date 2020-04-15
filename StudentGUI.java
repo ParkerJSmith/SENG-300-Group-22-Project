@@ -1,3 +1,4 @@
+/* Main GUI screen for students */
 package scholarshipGUI;
 
 import java.awt.BorderLayout;
@@ -32,26 +33,26 @@ public class StudentGUI extends JPanel {
 		frame.getContentPane().add(this, BorderLayout.CENTER);
 		setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Student");
+		JLabel lblNewLabel = new JLabel("Student");							//Create Student label//
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel.setBounds(33, 11, 91, 22);
 		add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Scholarship");
+		JLabel lblNewLabel_1 = new JLabel("Scholarship");					// Create Scolarship label//
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(178, 61, 125, 22);
 		add(lblNewLabel_1);
 		
-		JLabel lblSignout = new JLabel("Sign out");
+		JLabel lblSignout = new JLabel("Sign out");							// Create Sign out label//
 		lblSignout.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblSignout.setBounds(350, 10, 110, 22);
 		lblSignout.setForeground(new Color(1, 112, 169));
 		lblSignout.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {						// Event handlers if Sign out label is clicked//
 				int n = JOptionPane.showConfirmDialog(
 					    frame,
-					    "Are you sure you want to sign out?",
+					    "Are you sure you want to sign out?",				// Confirmation//
 					    "Sign out",
 					    JOptionPane.YES_NO_OPTION);
 				if (n == 0) {
@@ -60,7 +61,7 @@ public class StudentGUI extends JPanel {
 				}
 			}
 			
-			public void mouseEntered(MouseEvent arg0) {
+			public void mouseEntered(MouseEvent arg0) {	
 				lblSignout.setFont(new Font("Arial", Font.BOLD, 15));
 				lblSignout.setBounds(347, 10, 110, 22);	
 			}
@@ -72,19 +73,19 @@ public class StudentGUI extends JPanel {
 		});
 		add(lblSignout);
 
-		JButton btnNewButton = new JButton("View Scholarships");
+		JButton btnNewButton = new JButton("View Scholarships");			// Create button to view scholarships//
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frame.setContentPane(new ViewScholarshipGUI(frame, systemHandler, user));
+			public void actionPerformed(ActionEvent arg0) {					// Event handler if view scholarships is clicked//
+				frame.setContentPane(new ViewScholarshipGUI(frame, systemHandler, user));		// show scholarships gui//
 			}
 		});
 		btnNewButton.setBounds(152, 104, 120, 23);
 		add(btnNewButton);
 		
-		JButton viewApplications = new JButton("View Applications");
-		viewApplications.addActionListener(new ActionListener() {
+		JButton viewApplications = new JButton("View Applications");		// Create button to view applications//
+		viewApplications.addActionListener(new ActionListener() {			// event handler if view applications is clicked//
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setContentPane(new ViewStatusGUI(frame, systemHandler, user));
+				frame.setContentPane(new ViewStatusGUI(frame, systemHandler, user));		// Show scholarships that have been applied for //
 			}
 		});
 		viewApplications.setBounds(152, 128, 120, 23);

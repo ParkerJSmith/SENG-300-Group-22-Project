@@ -1,3 +1,4 @@
+/*GUI for registering account*/
 package scholarshipGUI;
 
 import javax.swing.JPanel;
@@ -32,7 +33,7 @@ public class RegisterGUI extends JPanel {
 
 		setBackground(new Color(239, 239, 239));
 
-		JButton btnRegister = new JButton("Register");
+		JButton btnRegister = new JButton("Register");					//Create button "Register"//
 		btnRegister.setForeground(new Color(0, 0, 0));
 		btnRegister.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnRegister.addActionListener(new ActionListener() {
@@ -40,7 +41,7 @@ public class RegisterGUI extends JPanel {
 			}
 		});
 		btnRegister.setBounds(74, 224, 296, 28);
-		btnRegister.addMouseListener(new MouseAdapter() {
+		btnRegister.addMouseListener(new MouseAdapter() {				// Event handler for register button//
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// Takes the user to the logged in page
@@ -67,38 +68,38 @@ public class RegisterGUI extends JPanel {
 			}
 		});
 
-		textField = new JTextField();
+		textField = new JTextField();									// Text field for "Username" Label//
 		textField.setBounds(74, 80, 296, 28);
 		textField.setColumns(10);
 
-		textField_1 = new JTextField();
+		textField_1 = new JTextField();									// Text field for "Password" Label//
 		textField_1.setBounds(74, 131, 296, 28);
 		textField_1.setColumns(10);
 
-		JLabel lblUsername = new JLabel("Username:");
+		JLabel lblUsername = new JLabel("Username:");					// Create "Username" label//
 		lblUsername.setForeground(new Color(103, 105, 107));
 		lblUsername.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblUsername.setBounds(74, 64, 76, 14);
 
-		JLabel lblPassword = new JLabel("Password:");
+		JLabel lblPassword = new JLabel("Password:");					// Create "Password" Label//
 		lblPassword.setForeground(new Color(103, 105, 107));
 		lblPassword.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblPassword.setBounds(74, 115, 90, 14);
 
-		JLabel lblUniversityOfWinnipeg = new JLabel("University of Winnipeg Scholarships");
+		JLabel lblUniversityOfWinnipeg = new JLabel("University of Winnipeg Scholarships");	// Create school name label//
 		lblUniversityOfWinnipeg.setBounds(102, 33, 253, 20);
 		lblUniversityOfWinnipeg.setFont(new Font("Arial", Font.PLAIN, 16));
 
-		textField_2 = new JTextField();
+		textField_2 = new JTextField();									// Text field for "Confirm Password" Label//
 		textField_2.setBounds(74, 185, 296, 28);
 		textField_2.setColumns(10);
 		setLayout(null);
 
-		JLabel lblConfirmPassword = new JLabel("Confirm Password:");
+		JLabel lblConfirmPassword = new JLabel("Confirm Password:");	// Create label "Confirm password"//
 		lblConfirmPassword.setForeground(new Color(103, 105, 107));
 		lblConfirmPassword.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblConfirmPassword.setBounds(74, 169, 175, 14);
-		add(lblConfirmPassword);
+		add(lblConfirmPassword);										// Add all the labels, buttons, textfields//
 		add(lblUsername);
 		add(lblPassword);
 		add(btnRegister);
@@ -107,12 +108,12 @@ public class RegisterGUI extends JPanel {
 		add(textField);
 		add(lblUniversityOfWinnipeg);
 
-		JLabel lblAlreadyHaveAn = new JLabel("Already have an account?");
+		JLabel lblAlreadyHaveAn = new JLabel("Already have an account?");	// Create label "Already have an account?"//
 		lblAlreadyHaveAn.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblAlreadyHaveAn.setForeground(Color.BLACK);
 		lblAlreadyHaveAn.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {					// Event handler if above label is clicked"//
 				//
 				//
 				//
@@ -123,10 +124,10 @@ public class RegisterGUI extends JPanel {
 		lblAlreadyHaveAn.setBounds(102, 263, 192, 14);
 		add(lblAlreadyHaveAn);
 
-		JLabel lblLogin = new JLabel("Sign In");
+		JLabel lblLogin = new JLabel("Sign In");						// Create Sign in label//
 		lblLogin.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {					// Event handler for sign in, head to LoginGUI panel/
 				LoginGUI panel = new LoginGUI(frame, systemHandler, guiHandler);
 				frame.setContentPane(panel);
 				frame.setVisible(true);

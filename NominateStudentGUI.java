@@ -1,3 +1,4 @@
+/* GUI for professors to nominate students*/
 package scholarshipGUI;
 
 import java.awt.EventQueue;
@@ -42,11 +43,11 @@ public class NominateStudentGUI extends JPanel {
 
 		String scholarships[] = systemHandler.getScholarshipNames();
 
-		for (int i = 0; i < scholarships.length; i++) {
+		for (int i = 0; i < scholarships.length; i++) {							// add the scholarships//
 			model.addElement(scholarships[i]);
 		}
 
-		frame.setTitle("Scholarship");
+		frame.setTitle("Scholarship");											// Set the title of the frame//
 		frame.setBounds(100, 100, 479, 340);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -54,17 +55,17 @@ public class NominateStudentGUI extends JPanel {
 		setBounds(0, 0, 463, 301);
 		setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Scholarships");
+		JLabel lblNewLabel = new JLabel("Scholarships");						//Create label "Scholarship" //
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel.setBounds(29, 11, 125, 24);
 		add(lblNewLabel);
 
-		JTextField textField = new JTextField();
+		JTextField textField = new JTextField();								// Create textfield for "Search" Label//
 		textField.setBounds(29, 90, 86, 20);
 		add(textField);
 		textField.setColumns(10);
 
-		JLabel lblNewLabel_1 = new JLabel("Search:");
+		JLabel lblNewLabel_1 = new JLabel("Search:");							// Create label "Search://
 		lblNewLabel_1.setForeground(Color.GRAY);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblNewLabel_1.setBounds(29, 76, 46, 14);
@@ -74,29 +75,29 @@ public class NominateStudentGUI extends JPanel {
 		list.setBounds(147, 46, 306, 244);
 		add(list);
 
-		JButton backButton = new JButton("Back");
+		JButton backButton = new JButton("Back");								// Create "Back" button//		
 		add(backButton);
 
 		backButton.setBounds(29, 227, 89, 23);
-		backButton.addMouseListener(new MouseAdapter() {
+		backButton.addMouseListener(new MouseAdapter() {				
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {							// Event handler if back is clicked, new AdminGUI is created//
 				frame.setContentPane(new AdminGUI(frame, systemHandler, user));
 			}
 		});
 
-		JButton btnNewButton = new JButton("Nominate");
+		JButton btnNewButton = new JButton("Nominate");							// Create nominate button//
 		btnNewButton.setBounds(29, 200, 89, 23);
 		add(btnNewButton);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {							// Event handler if Nominate is clicked//
 				int listIndex = list.getSelectedIndex();
 
-				if (!systemHandler.checkNominatable(listIndex)) {
+				if (!systemHandler.checkNominatable(listIndex)) {				// If the following scholarship has no nomination option//
 					JOptionPane.showMessageDialog(frame, "This scholarship does not accept nominations.",
 							"Nomination Failure", JOptionPane.WARNING_MESSAGE);
-				} else if (listIndex > -1) {
+				} else if (listIndex > -1) {									// Confirmation to nominate//
 					int n = JOptionPane.showConfirmDialog(frame,
 							"Confirm nomination of student?", "Confirm",
 							JOptionPane.YES_NO_OPTION);
