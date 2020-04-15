@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Application {
+public class Application implements java.io.Serializable {
 
 	String lastName, firstName, id;
 	Faculty faculty;
